@@ -74,7 +74,6 @@ describe "Authentication" do
           it { should have_title('Sign in') }
         end
 
-        # Rails 4.1.1 redirect_to Bug 
         describe "submitting to the update action" do
           before { patch user_path(user) }
           # Rails 4.1.1 redirect_to Bug 
@@ -86,6 +85,21 @@ describe "Authentication" do
         #  before { visit users_path }
         #  it { should have_title('Sign in') }
         #end
+      end
+    
+      describe "in the Microposts controller" do
+
+        describe "submitting to the create action" do
+          before { post microposts_path }
+          # Rails 4.1.1 redirect_to Bug 
+          #specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete micropost_path(FactoryGirl.create(:micropost)) }
+          # Rails 4.1.1 redirect_to Bug 
+          #specify { expect(response).to redirect_to(signin_path) }
+        end
       end
     end
 
